@@ -2,7 +2,9 @@
 
 int main() {
 
-    float nota1[30], nota2[30], media[30];
+    float nota1[30];
+    float nota2[30];
+    float media[30];
     float mediaTurma = 0;
 
     for (int i = 0; i < 30; i++) {
