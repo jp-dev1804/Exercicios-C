@@ -1,0 +1,4 @@
+Crie um programa em C que crie 3 vetores (defina TAM como 15):
+    Vetor1 - preencha com números pares em sequência maiores que 100
+    Vetor2 - preencha com números primos (para verificar se um número é primo ou não teste a divisão com apenas os números anteriores que já estão no vetor)
+    Vetor3 - é o vetor somatório, onde o elemento 1 é igual a soma do elemento 1 do vetor 1 e o último elemento do vetor 2, o elemento 2 é igual a soma do elemento 2 do vetor 1 e  penúltimo elemento do vetor 2, e assim por diante
