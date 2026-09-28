@@ -1,3 +1,7 @@
+#include <stdio.h>
+
+#define QTD_COLUNAS 3
+
 //a)
 int removerRepetidos(int v[], int tam) {
     int novoTam = 1;
@@ -9,7 +13,7 @@ int removerRepetidos(int v[], int tam) {
             novoTam++;
         }
     }
-    return novoTam
+    return novoTam;
 }
 
 //b)
@@ -62,7 +66,7 @@ void maiorPorLinha(int m[][QTD_COLUNAS], int lin, int col, int v[]) {
                 maior = m[i][j];
             }
         }
-        v[i] = maior
+        v[i] = maior;
     }
 }
 
@@ -93,4 +97,134 @@ void inverterPalavras(char str[]) {
             i++;
         }
     }
+}
+
+//MAIN
+int main()
+{
+    int tam;
+    int i;
+
+    // ===== A =====
+
+    printf("Digite o tamanho do vetor A: ");
+    scanf("%d", &tam);
+
+    int vA[tam];
+
+    printf("Digite os valores em ordem crescente:\n");
+
+    for (i = 0; i < tam; i++)
+    {
+        scanf("%d", &vA[i]);
+    }
+
+    int novoTam = removerRepetidos(vA, tam);
+
+    printf("A - Vetor sem repetidos: ");
+
+    for (i = 0; i < novoTam; i++)
+    {
+        printf("%d ", vA[i]);
+    }
+
+    printf("\nNovo tamanho: %d\n\n", novoTam);
+
+
+    // ===== B =====
+
+    printf("Digite o tamanho do vetor B: ");
+    scanf("%d", &tam);
+
+    int vB[tam];
+
+    printf("Digite os valores:\n");
+
+    for (i = 0; i < tam; i++)
+    {
+        scanf("%d", &vB[i]);
+    }
+
+    ordenar(vB, tam);
+
+    printf("B - Vetor ordenado: ");
+
+    for (i = 0; i < tam; i++)
+    {
+        printf("%d ", vB[i]);
+    }
+
+    printf("\n\n");
+
+
+    // ===== C =====
+
+    printf("Digite o tamanho do vetor C: ");
+    scanf("%d", &tam);
+
+    int vC[tam];
+
+    preencherPrimos(vC, tam);
+
+    printf("C - Numeros primos: ");
+
+    for (i = 0; i < tam; i++)
+    {
+        printf("%d ", vC[i]);
+    }
+
+    printf("\n\n");
+
+
+    // ===== D =====
+
+    int lin;
+    int col;
+
+    printf("Digite o numero de linhas da matriz: ");
+    scanf("%d", &lin);
+
+    printf("Digite o numero de colunas (maximo %d): ", QTD_COLUNAS);
+    scanf("%d", &col);
+
+    int matriz[lin][QTD_COLUNAS];
+    int vD[lin];
+
+    printf("Digite os valores da matriz:\n");
+
+    for (i = 0; i < lin; i++)
+    {
+        int j;
+
+        for (j = 0; j < col; j++)
+        {
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    maiorPorLinha(matriz, lin, col, vD);
+
+    printf("D - Maior de cada linha: ");
+
+    for (i = 0; i < lin; i++)
+    {
+        printf("%d ", vD[i]);
+    }
+
+    printf("\n\n");
+
+
+    // ===== E =====
+
+    char str[100];
+
+    printf("Digite uma frase: ");
+    scanf(" %[^\n]", str);
+
+    inverterPalavras(str);
+
+    printf("E - Frase invertida: %s\n", str);
+
+
+    return 0;
 }
