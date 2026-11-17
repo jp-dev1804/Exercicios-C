@@ -40,6 +40,7 @@ int buscarConta(Cadastro *cadastro, int numero) {
 /* Cadastra uma nova conta no final do vetor. */
 void cadastrarConta(Cadastro *cadastro, int numero) {
     int resultado;
+    char linha[50];
 
     if (cadastro->quantidade >= MAX_CONTAS) {
         printf("Cadastro cheio: limite de 100 contas.\n");
@@ -58,47 +59,36 @@ void cadastrarConta(Cadastro *cadastro, int numero) {
     limparEntrada();
 
     printf("Nome do titular: ");
-
-    if (!fgets(cadastro->contas[cadastro->quantidade].nome,
-               sizeof(cadastro->contas[cadastro->quantidade].nome), stdin))
-        return;
-
+    fgets(cadastro->contas[cadastro->quantidade].nome, 80, stdin);
     cadastro->contas[cadastro->quantidade].nome[
         strcspn(cadastro->contas[cadastro->quantidade].nome, "\n")] = '\0';
 
     printf("CPF: ");
-
-    if (!fgets(cadastro->contas[cadastro->quantidade].cpf,
-               sizeof(cadastro->contas[cadastro->quantidade].cpf), stdin))
-        return;
-
+    fgets(cadastro->contas[cadastro->quantidade].cpf, 15, stdin);
     cadastro->contas[cadastro->quantidade].cpf[
         strcspn(cadastro->contas[cadastro->quantidade].cpf, "\n")] = '\0';
 
     printf("Telefone: ");
-
-    if (!fgets(cadastro->contas[cadastro->quantidade].telefone,
-               sizeof(cadastro->contas[cadastro->quantidade].telefone), stdin))
-        return;
-
+    fgets(cadastro->contas[cadastro->quantidade].telefone, 20, stdin);
     cadastro->contas[cadastro->quantidade].telefone[
         strcspn(cadastro->contas[cadastro->quantidade].telefone, "\n")] = '\0';
 
     printf("Saldo inicial: ");
+    fgets(linha, sizeof(linha), stdin);
 
-    if (scanf("%lf", &cadastro->contas[cadastro->quantidade].saldo) != 1) {
-        limparEntrada();
+    if (sscanf(linha, "%lf", &cadastro->contas[cadastro->quantidade].saldo) != 1) {
+        printf("Saldo invalido. Cadastro cancelado.\n");
         return;
     }
 
     if (cadastro->contas[cadastro->quantidade].saldo < 0) {
-        printf("Saldo inicial nao pode ser negativo. Cadastro cancelado.\n");
+        printf("Saldo nao pode ser negativo.\n");
         return;
     }
 
     cadastro->quantidade++;
 
-    printf("Conta cadastrada com sucesso.\n");
+    printf("Conta cadastrada com sucesso!\n");
 }
 
 /* Consulta o saldo de uma conta. */
